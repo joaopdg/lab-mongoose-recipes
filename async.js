@@ -25,16 +25,17 @@ const createData = async () => {
     // UPDATE ONE RECIPE
     const updateRecipe = await Recipe.findOneAndUpdate(
       { title: "Rigatoni alla Genovese" },
-      { duration: 100 }
+      { duration: 100 },
+      { new: true }
     );
     console.log(`Recipe Updated: ${updateRecipe}`);
 
     // DELETE RECIPE
-    const deleteRecipe = await Recipe.deleteOne({ title: "Carrot Cake" });
+    await Recipe.deleteOne({ title: "Carrot Cake" });
     console.log(`Recipe Deleted`);
 
     // DISCONNECT FROM DATA BASE
-    const disconnectDB = await mongoose.disconnect();
+    await mongoose.disconnect();
     console.log("Disconnected");
   } catch (error) {
     console.log(error);
